@@ -1,0 +1,35 @@
+<div class="container-main">
+  <div class="container-bulletin">
+    <div class="container-header">
+      <p>ПОЗАЧЕРГОВІ ВИБОРИ НАРОДНИХ ДЕПУТАТІВ УКРАЇНИ<br>
+        21 липня 2019 року<br>
+
+        ОДНОМАНДАТНИЙ ВИБОРЧИЙ ОКРУГ №94</p>
+    </div>
+    <div class="container-table">
+      <table class="table-help">
+        <tbody>
+        <tr>
+          <td class="col-num"><b>!</b></td>
+          <td class="col-check"></td>
+          <td><span class="text-row0"><b>У СПИСКУ ВИБЕРІТЬ КАНДИДАТА ВІД ПАРТІЇ «СЛУГА НАРОДУ»</b></span></td>
+        </tr>
+        </tbody>
+      </table>
+      <table class="table-names">
+        <tbody>
+          <tr *ngFor="let row of data" >
+            <td class="col-num"><b>{{row.num}}</b></td>
+            <td class="col-check">
+              <input type="checkbox" [value]="row.num" (change)="setAnswer(row.num)">
+            </td>
+            <td><app-bulletin-text [name]="row.name" [description]="row.description" ></app-bulletin-text></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="container-button">
+      <button (click)="gotoNext()">Cледующий бюллетень</button>
+    </div>
+  </div>
+</div>
