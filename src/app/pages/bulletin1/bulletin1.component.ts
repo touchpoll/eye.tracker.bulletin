@@ -11,7 +11,7 @@ interface IBulletinRecord {
 }
 
 const data: Array<IBulletinRecord> = [
-  {num: 1, name: 'БУГАКОВ ЯРОСЛАВ СЕРГІЙОВИЧ', description: 'народився 26 квiтня 1989 року в місті Дебальцеве Донецької області, громадянин України, протягом останніх п’яти років проживає на території України, освіта вища, тимчасово не працює, безпартійний, проживає в місті Дебальцеве Донецької області, судимість'},
+  {num: 1, name: 'БУГАКОВ ЯРОСЛАВ СЕРГІЙОВИЧ', description: 'народився 26 квiтня 1989 року в місті Дебальцеве Донецької області, громадянин України, протягом останніх п’яти років проживає на території України, освіта вища, тимчасово не працює, безпартійний, проживає в місті Дебальцеве Донецької області, судимість відсутня, самовисування.'},
   {num: 2, name: 'ГОЛОБОРОДЬКО ПАВЛО ВІТАЛІЙОВИЧ', description: 'народився 11 липня 1990 року в місті Васильків Київської області, громадянин України, протягом останніх п’яти років проживає на території України, освіта вища, начальник відділу фінансового аналізу та аудиту, ПрАТ "СК "ЮНІВЕС", безпартійний, проживає в місті Васильків Київської області, судимість відсутня, самовисування.'},
   {num: 3, name: 'ДУБИНСЬКИЙ ВАДИМ ВОЛОДИМИРОВИЧ', description: 'народився 12 грудня 1971 року в місті Сміла Черкаської області, громадянин України, протягом останніх п’яти років проживає на території України, освіта вища, керівник підрозділу, "ПП "Слуга народу", безпартійний, проживає в місті Сміла Черкаської області, судимість відсутня, самовисування.'},
   {num: 4, name: 'ДУБИНСЬКИЙ МАКСИМ МИКОЛАЙОВИЧ', description: 'народився 28 квiтня 1998 року в місті Умань Черкаської області, громадянин України, протягом останніх п’яти років проживає на території України, освіта загальна середня, керівник проекту, "ПП "Слуга народу", безпартійний, проживає в місті Сміла Черкаської області, судимість відсутня, самовисування.'},
@@ -29,31 +29,24 @@ const data: Array<IBulletinRecord> = [
   templateUrl: './bulletin1.component.html',
   styleUrls: ['./bulletin1.component.css']
 })
-export class Bulletin1Component implements OnInit, OnDestroy {
+export class Bulletin1Component implements OnInit {
   private answerReady = false;
   private id: string;
-  private _queryParams$: Subscription;
   public data = data.slice();
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this._queryParams$ = this.route.queryParams.pipe(map((params: Params) => params['id'])).subscribe(id => this.id = id);
   }
 
-  ngOnDestroy(): void {
-    this._queryParams$.unsubscribe();
-  }
 
   setAnswer(e): void {
-    this.answerReady = false;
+    this.answerReady = true;
     localStorage.setItem(`${this.id}_answer1`, e);
   }
 
   gotoNext(): void {
    this.router.navigate(['bul2'], {queryParams: {...this.route.snapshot.queryParams}});
-
-
-    window.scroll(0, 0);
+   window.scroll(0, 0);
   }
 
 }

@@ -29,7 +29,7 @@
       </table>
     </div>
     <div class="container-button">
-      <button (click)="gotoNext()">Cледующий бюллетень</button>
+      <button (click)="gotoNext()"  [disabled]="!answerReady">Cледующий бюллетень</button>
     </div>
   </div>
 </div>
